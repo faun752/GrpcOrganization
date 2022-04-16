@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcOrganization.Protos";
+
+package organization;
+
+service OrganizationSrv {
+	rpc GetOrganizations (Empty) returns (Organizations);
+	rpc GetOrganization (OrganizationKey) returns (Organization);
+	rpc RegisterOrganization (Organization) returns (Empty);
+	rpc UpdateOrganization (Organization) returns (Empty);
+	rpc DelteOrganization (OrganizationKey) returns (Empty);
+}
+
+message Empty {
+}
+
+message Organizations {
+	repeated Organization items = 1;
+}
+
+message Organization {
+	string OrganizationCode = 1;
+	string OrganizationName = 2;
+}
+
+message OrganizationKey {
+	string OrganizationCode = 1;
+}
